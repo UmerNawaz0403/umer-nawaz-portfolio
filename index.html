@@ -932,13 +932,17 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);overflow:hidden}
       d.style.transition='height '+D+'ms cubic-bezier(.2,.8,.2,1)'; d.style.height=to+'px';
       clearTimeout(d._t); d._t=setTimeout(function(){ d.style.transition=''; d.style.height=''; done&&done(); },D);
     }
+    // measure exact rendered heights (borders included, sub-pixel accurate) so nothing snaps at the end
+    function h(d){ return d.getBoundingClientRect().height; }
+    function closedH(d){ return $('summary',d).getBoundingClientRect().height + (d.offsetHeight-d.clientHeight); }
     function close(d){
-      if(!d.open) return; var s=$('summary',d);
+      if(!d.open) return;
+      var start=h(d), end=closedH(d);
       d.classList.remove('is-open');
-      anim(d,d.offsetHeight,s.offsetHeight,function(){ d.open=false; });
+      anim(d,start,end,function(){ d.open=false; });
     }
     function open(d){
-      var start=d.offsetHeight; d.open=true; var end=d.scrollHeight;
+      var start=h(d); d.open=true; d.style.height=''; var end=h(d);
       requestAnimationFrame(function(){ d.classList.add('is-open'); });
       anim(d,start,end);
     }
