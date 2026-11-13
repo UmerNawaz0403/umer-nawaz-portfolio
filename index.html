@@ -230,14 +230,15 @@ h2{font-weight:500;font-size:clamp(2.1rem,4.6vw,3.6rem);line-height:1.05;letter-
 .sk .bar i{display:block;height:100%;width:0;background:var(--ink);transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
 
 /* ---------- testimonials ---------- */
-.qslider{overflow:hidden;margin:0 -8px;padding:4px 0}
+.qwrap{position:relative}
+.qslider{overflow:hidden;margin:0 -8px;padding:4px 0;transition:height .5s cubic-bezier(.2,.8,.2,1)}
+.qarrow{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:var(--card);box-shadow:0 8px 24px rgba(0,0,0,.25);transition:top .5s cubic-bezier(.2,.8,.2,1),border-color .2s}
+.qprev{left:-21px}.qnext{right:-21px}
+@media(max-width:520px){.qprev{left:-12px}.qnext{right:-12px}.qarrow{width:38px;height:38px}}
 .qtrack{display:flex;transition:transform .7s cubic-bezier(.2,.8,.2,1);touch-action:pan-y}
 .qtrack{align-items:flex-start}
 .qtrack .quote{flex:0 0 calc(100% / var(--per,3));padding-inline:8px;background:none;border:0;margin:0}
 .qnav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:28px}
-.qdots{display:flex;gap:8px}
-.qdots button{width:8px;height:8px;border-radius:999px;background:var(--line);transition:width .3s,background .3s}
-.qdots button.on{width:26px;background:var(--ink)}
 .wnav{display:none}
 @media(max-width:760px){
   .wview{overflow:hidden;margin:0 -8px}
@@ -529,7 +530,6 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);overflow:hidden}
     </div>
     <div class="qnav wnav" id="wnav">
       <button class="round" id="wprev" aria-label="Previous project"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
-      <div class="qdots" id="wdots"></div>
       <button class="round" id="wnext" aria-label="Next project"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
     </div>
     </div>
@@ -638,7 +638,8 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);overflow:hidden}
       <div><div class="kicker rv">Kind words</div><h2 class="split">What clients <em>say.</em></h2></div>
       <p class="rv">Feedback from Shopify and HubSpot clients in the USA, UK, Canada and Australia.</p>
     </div>
-    <div class="qslider rv" id="qslider" aria-roledescription="carousel" aria-label="Client reviews">
+    <div class="qwrap rv">
+    <div class="qslider" id="qslider" aria-roledescription="carousel" aria-label="Client reviews">
       <div class="qtrack" id="qtrack">
         <figure class="quote"><div class="qin"><span class="qtag">Shopify</span><q>Working with Umer was a great experience. He understood our requirements, improved our Shopify store's design, and made the overall shopping experience much smoother. His attention to detail, technical knowledge, and timely delivery made the entire process easy. Highly recommended!</q><figcaption class="who"><div class="av">OB</div><div>Olivia Bennett<span>USA</span></div></figcaption></div></figure>
         <figure class="quote"><div class="qin"><span class="qtag">Shopify</span><q>Umer handled our Shopify customization and optimization professionally. Excellent communication and quality work throughout.</q><figcaption class="who"><div class="av">JW</div><div>James Wilson<span>UK</span></div></figcaption></div></figure>
@@ -650,10 +651,8 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);overflow:hidden}
         <figure class="quote"><div class="qin"><span class="qtag">Landing pages</span><q>Professional HubSpot landing pages with reusable modules and excellent mobile optimization. Highly recommended!</q><figcaption class="who"><div class="av">AB</div><div>Alexander Brooks<span>UK</span></div></figcaption></div></figure>
       </div>
     </div>
-    <div class="qnav rv">
-      <button class="round" id="qprev" aria-label="Previous review"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
-      <div class="qdots" id="qdots"></div>
-      <button class="round" id="qnext" aria-label="Next review"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+      <button class="round qarrow qprev" id="qprev" aria-label="Previous review"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <button class="round qarrow qnext" id="qnext" aria-label="Next review"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
     </div>
     </div>
   </div>
@@ -857,12 +856,14 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);overflow:hidden}
     function rotForward(){ var f; do { f=track.firstElementChild; track.appendChild(f); } while(f.classList.contains('hide')); }
     function rotBack(){ var l; do { l=track.lastElementChild; track.insertBefore(l,track.firstElementChild); } while(l.classList.contains('hide')); }
     function dots(){
+      if(o.onChange) o.onChange(o.per());
       if(!o.dots) return; var c=n();
       if(o.dots.children.length!==c){ o.dots.innerHTML=''; for(var k=0;k<c;k++){ var d=document.createElement('button'); d.setAttribute('aria-label','Go to item '+(k+1)); (function(k){ d.onclick=function(){ goTo(k); restart(); }; })(k); o.dots.appendChild(d); } }
       [].forEach.call(o.dots.children,function(d,j){ d.classList.toggle('on',j===i); });
     }
     function next(){
       if(!canMove()||busy) return; busy=true;
+      if(o.onChange){ var t=[].slice.call(track.children,1,per()+1), h=0; t.forEach(function(c){ h=Math.max(h,c.getBoundingClientRect().height); }); if(h) view.style.height=(h+8)+'px'; }
       setT(-step(),true);
       setTimeout(function(){ rotForward(); setT(0,false); track.style.transition=''; i=(i+1)%n(); dots(); busy=false; },720);
     }
@@ -897,15 +898,22 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);overflow:hidden}
     return {update:update, reset:function(){ reset(); update(); }};
   }
 
-  // reviews: 3 / 2 / 1 per view, every 3.5s
+  // reviews: 3 / 2 / 1 per view, every 3.5s; height follows the cards in view
+  function fitQ(per){
+    var t=$('#qtrack'), v=$('#qslider'); if(!t||!v) return;
+    var shown=[].slice.call(t.children,0,per), h=0;
+    shown.forEach(function(c){ h=Math.max(h,c.getBoundingClientRect().height); });
+    if(h) v.style.height=(h+8)+'px';
+  }
   var qv=$('#qslider');
-  var qLoop = qv ? Loop({ view:qv, track:$('#qtrack'), dots:$('#qdots'), prevBtn:$('#qprev'), nextBtn:$('#qnext'), interval:3500,
+  var qLoop = qv ? Loop({ view:qv, track:$('#qtrack'), onChange:fitQ, prevBtn:$('#qprev'), nextBtn:$('#qnext'), interval:3500,
     per:function(){ var w=innerWidth; return w<=760?1:(w<=1020?2:3); },
     setPer:function(p){ $('#qtrack').style.setProperty('--per',p); } }) : null;
   if(qLoop) qLoop.update();
+  addEventListener('load',function(){ if(qLoop) qLoop.update(); });
 
   // projects: slider on mobile only, every 3.5s
-  var wLoop = Loop({ view:$('#wview'), track:$('.works'), dots:$('#wdots'), prevBtn:$('#wprev'), nextBtn:$('#wnext'), interval:3500,
+  var wLoop = Loop({ view:$('#wview'), track:$('.works'), prevBtn:$('#wprev'), nextBtn:$('#wnext'), interval:3500,
     per:function(){ return 1; }, enabled:function(){ return innerWidth<=760; },
     paused:function(){ return $('#modal').classList.contains('open'); } });
   wLoop.update();
