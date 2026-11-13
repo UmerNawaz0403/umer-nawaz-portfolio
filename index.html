@@ -870,15 +870,27 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);overflow:hidden}
 
   // live website screenshots on cards (falls back to the name if a screenshot can't load)
   // To use your own image instead, set data[id].img = 'images/name.jpg'
-  function snapUrl(d){ return d.img || ('https://s0.wp.com/mshots/v1/'+encodeURIComponent(d.u)+'?w=1280&h=800'); }
+  // Screenshot sources, tried in order: your own image (d.img), WordPress mshots, then thum.io
+  function sources(d){
+    if(d.img) return [d.img];
+    var u=d.u;
+    return ['https://s0.wp.com/mshots/v1/'+encodeURIComponent(u)+'?w=1280&h=800',
+            'https://image.thum.io/get/width/1280/crop/800/noanimate/'+u];
+  }
   function addSnap(art,d,alt){
     var old=art.querySelector('.snap'); if(old) old.remove(); art.classList.remove('has-snap');
     if(!(d.u||d.img)) return;
+    var list=sources(d), si=0, tries=0;
     var im=new Image(); im.className='snap'; im.alt=alt+' website screenshot'; im.loading='lazy'; im.decoding='async';
-    im.onload=function(){ if(im.naturalWidth>400) art.classList.add('has-snap'); else retry(); };
-    im.onerror=function(){ art.classList.remove('has-snap'); };
-    var tries=0; function retry(){ if(d.img||tries++>3) return; setTimeout(function(){ im.src=snapUrl(d)+'&r='+tries; },4000); }
-    im.src=snapUrl(d); art.appendChild(im);
+    function next(){ si++; tries=0; if(si<list.length) im.src=list[si]; }
+    im.onload=function(){
+      if(im.naturalWidth>400){ art.classList.add('has-snap'); return; }
+      // mshots returns a small placeholder while it generates; wait and retry, then fall back
+      if(si===0 && !d.img && tries++<3){ setTimeout(function(){ im.src=list[0]+'&r='+tries; },4000); }
+      else next();
+    };
+    im.onerror=function(){ art.classList.remove('has-snap'); next(); };
+    im.src=list[0]; art.appendChild(im);
   }
   $$('.work').forEach(function(w){ var d=data[w.dataset.id]; if(d) addSnap($('.art',w),d,d.n); });
   var modal=$('#modal'), last=null;
