@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Umer Nawaz — Shopify & HubSpot Developer</title>
+<meta name="description" content="Senior Shopify and HubSpot developer building fast, beautifully designed websites and landing pages for businesses worldwide. Free quote within 24 hours.">
+<meta name="theme-color" content="#0b0b0c">
+<meta property="og:title" content="Umer Nawaz — Shopify & HubSpot Developer">
+<meta property="og:description" content="Where beautiful design meets real results. Shopify, HubSpot and landing pages for businesses worldwide.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Umer Nawaz — Shopify & HubSpot Developer","description":"Shopify and HubSpot development for businesses worldwide.","areaServed":"Worldwide","serviceType":["Shopify development","HubSpot development","Landing pages","Website redesign"]}</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%230b0b0c'/><text x='50' y='70' font-size='62' text-anchor='middle' fill='%23d6ff4a' font-family='Georgia' font-style='italic'>U</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0c; --bg2:#111113; --card:#151517; --line:#26262a; --text:#f3f1ec; --muted:#8d8b86;
+  --accent:#d6ff4a; --ink:#d6ff4a; --on-accent:#0b0b0c; --r:22px;
+  --c-shopify:#95bf47; --c-hubspot:#ff7a59; --c-landing:#5b9dff;
+}
+[data-theme="light"]{
+  --bg:#f3f1ec; --bg2:#ebe8e1; --card:#fbfaf7; --line:#dcd8cf; --text:#111113; --muted:#6b6862;
+  --ink:#4f7400;
+  --c-shopify:#5e8e3e; --c-hubspot:#e8613c; --c-landing:#2563eb;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{background:var(--bg);color:var(--text);font-family:"Inter Tight",system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .35s,color .35s}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+.serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400}
+em{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;color:var(--ink)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:8px}
+[hidden]{display:none!important}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:16px;left:0;right:0;z-index:50;padding:0 16px}
+.nav .bar{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;height:62px;padding:0 10px 0 22px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.logo{font-weight:600;font-size:1.05rem;letter-spacing:-.01em;white-space:nowrap;flex:none;display:flex;align-items:center;gap:10px}
+.logo i{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
+.links{display:flex;gap:clamp(16px,2.2vw,30px);list-style:none;font-size:.92rem;color:var(--muted);white-space:nowrap}
+.links a{transition:color .2s}
+.links a:hover,.links a.active{color:var(--text)}
+.nav-r{display:flex;align-items:center;gap:8px;flex:none}
+.round{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:.2s;flex:none}
+.round:hover{border-color:var(--text)}
+.round svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8}
+#menuBtn{display:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 24px;border-radius:999px;font-weight:600;font-size:.95rem;white-space:nowrap;transition:transform .25s,background .25s,color .25s,border-color .25s}
+.btn.solid{background:var(--accent);color:var(--on-accent)}
+.btn.solid:hover{transform:translateY(-2px)}
+.btn.line{border:1px solid var(--line)}
+.btn.line:hover{border-color:var(--text)}
+.btn.sm{height:42px;padding:0 18px;font-size:.88rem}
+.btn .arr{display:inline-block;transition:transform .25s}
+.btn:hover .arr{transform:translateX(4px)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:190px 0 90px;overflow:hidden}
+.orb{position:absolute;width:620px;height:620px;right:-180px;top:-160px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 38%,transparent),transparent 65%);filter:blur(30px);opacity:.55;pointer-events:none;animation:drift 16s ease-in-out infinite}
+[data-theme="light"] .orb{opacity:.7}
+@keyframes drift{50%{transform:translate(-60px,50px)}}
+.status{display:inline-flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 16px 7px 12px;margin-bottom:34px}
+.status i{width:8px;height:8px;border-radius:50%;background:#3ddc84;animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(61,220,132,.6)}70%,100%{box-shadow:0 0 0 9px rgba(61,220,132,0)}}
+.hero h1{font-weight:500;font-size:clamp(2.6rem,7vw,6rem);line-height:1.02;letter-spacing:-.045em;max-width:1050px}
+.hero h1 em{letter-spacing:-.02em}
+#typed{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.02em;--tc:var(--c-shopify);color:var(--tc);border-right:.06em solid var(--tc);transition:color .4s;padding-right:.06em;animation:caret .85s steps(1) infinite}
+@keyframes caret{50%{border-color:transparent}}
+.hero-foot{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:end;margin-top:56px}
+.hero-foot p{color:var(--muted);font-size:1.12rem;max-width:520px}
+.hero-foot .cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+
+.ticker{display:grid;grid-template-columns:repeat(4,1fr);margin-top:80px;border-top:1px solid var(--line)}
+.ticker div{padding:26px 0 0}
+.ticker div+div{padding-left:24px;border-left:1px solid var(--line)}
+.ticker b{display:block;font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1}
+.ticker span{color:var(--muted);font-size:.88rem}
+
+/* ---------- marquee ---------- */
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding:22px 0;background:var(--bg2)}
+.track{display:flex;width:max-content;animation:slide 36s linear infinite}
+.track span{font-family:"Instrument Serif",serif;font-size:clamp(1.6rem,3vw,2.4rem);white-space:nowrap;padding-right:40px;display:flex;align-items:center;gap:40px}
+.track span::after{content:"✦";font-size:.6em;color:var(--ink)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- section basics ---------- */
+section{padding:120px 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:56px;flex-wrap:wrap}
+.kicker{display:flex;align-items:center;gap:10px;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.kicker::before{content:"";width:22px;height:1px;background:var(--ink)}
+h2{font-weight:500;font-size:clamp(2.1rem,4.6vw,3.6rem);line-height:1.05;letter-spacing:-.035em;max-width:720px}
+.head p{color:var(--muted);max-width:400px}
+
+/* ---------- bento services ---------- */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.tile{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:32px;overflow:hidden;min-height:260px;display:flex;flex-direction:column;justify-content:space-between;transition:border-color .3s,transform .3s}
+.tile::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--accent) 12%,transparent),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.tile:hover::before{opacity:1}
+.tile:hover{border-color:color-mix(in srgb,var(--ink) 45%,var(--line))}
+.tile>*{position:relative}
+.tile .num{font-size:.8rem;color:var(--muted);letter-spacing:.1em}
+.tile h3{font-weight:500;font-size:1.65rem;letter-spacing:-.02em;margin:18px 0 10px;line-height:1.15}
+.tile p{color:var(--muted);font-size:.98rem}
+.tile ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tile li{font-size:.78rem;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--muted)}
+.s1{grid-column:span 4}.s2{grid-column:span 2}.s3{grid-column:span 2}.s4{grid-column:span 2}.s5{grid-column:span 2}
+.big-ic{position:absolute;right:-20px;bottom:-40px;font-family:"Instrument Serif",serif;font-style:italic;font-size:15rem;line-height:1;color:var(--line);pointer-events:none;user-select:none}
+.tile.accent{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.tile.accent p,.tile.accent .num{color:color-mix(in srgb,var(--on-accent) 70%,transparent)}
+.tile.accent::before{display:none}
+.speed{display:flex;align-items:baseline;gap:6px;font-family:"Instrument Serif",serif;font-size:5rem;line-height:1}
+.speed small{font-family:"Inter Tight";font-size:1rem}
+
+/* ---------- work ---------- */
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{height:40px;padding:0 18px;border:1px solid var(--line);border-radius:999px;font-size:.88rem;color:var(--muted);transition:.2s}
+.filters button:hover{color:var(--text);border-color:var(--text)}
+.filters button.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.work{cursor:pointer;display:block}
+.work.wide{grid-column:span 2}
+.shot{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:16/10;border:1px solid var(--line);background:var(--card)}
+.work.wide .shot{aspect-ratio:21/9}
+.shot .chrome{position:absolute;top:0;left:0;right:0;height:34px;display:flex;align-items:center;gap:6px;padding:0 14px;background:rgba(0,0,0,.25);z-index:2}
+.shot .chrome i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.45)}
+.shot .art{position:absolute;inset:0;display:grid;place-items:center;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.shot .art span{font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(1.8rem,2.6vw,2.6rem);text-align:center;padding:0 16px;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.25)}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center}
+.art .snap{opacity:0;transition:opacity .6s,transform .7s cubic-bezier(.2,.8,.2,1);top:34px;height:calc(100% - 34px)}
+.art.has-snap .snap{opacity:1}
+.art.has-snap span{opacity:0}
+.work:hover .art.has-snap{transform:none}
+.work:hover .art.has-snap .snap{transform:scale(1.04)}
+.work:hover .art{transform:scale(1.05)}
+.shot .view{position:absolute;right:18px;bottom:18px;z-index:2;width:58px;height:58px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-size:1.3rem;transform:scale(0) rotate(-45deg);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.work:hover .view,.work:focus-visible .view{transform:scale(1) rotate(0)}
+.g1{background:linear-gradient(135deg,#a3546b,#e3a3b2 55%,#f8e3e6)}
+.g2{background:linear-gradient(135deg,#111,#3b0d0d 45%,#d4202b)}
+.g3{background:linear-gradient(135deg,#0b4f8a,#2f8fe0 55%,#bfe2ff)}
+.g4{background:linear-gradient(135deg,#1f1f22,#3a3a40 45%,#f26a1b)}
+.g5{background:linear-gradient(135deg,#0e1a24,#2c3e50 55%,#8aa1b4)}
+.g7{background:linear-gradient(135deg,#1b1340,#5b3fd1 55%,#a8f0e0)}
+.g8{background:linear-gradient(135deg,#062b3a,#0f6b8a 55%,#9ad7e6)}
+.g9{background:linear-gradient(135deg,#0d2a3a,#3f6f80 50%,#d9cdb8)}
+.g10{background:linear-gradient(135deg,#3a1206,#c4441c 50%,#ff9a6b)}
+.g11{background:linear-gradient(135deg,#0b2a1e,#1f6b4a 55%,#c9e3b0)}
+.g12{background:linear-gradient(135deg,#0c1033,#2f3fd6 50%,#ff7a59)}
+.g13{background:linear-gradient(135deg,#2a0f2e,#8a2a6b 55%,#f2b5a0)}
+.g6{background:linear-gradient(135deg,#5a0f12,#a8191f 55%,#e8b84a)}
+.meta{display:flex;flex-direction:column;gap:4px;padding:18px 4px 0}
+.meta p{margin-top:2px}
+.meta h3{font-weight:500;font-size:1.35rem;letter-spacing:-.02em}
+.meta p{color:var(--muted);font-size:.92rem}
+.meta .res{color:var(--ink);font-size:.88rem;order:-1;letter-spacing:.02em}
+.work.hide{display:none}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about .big{font-size:clamp(1.5rem,2.6vw,2.05rem);line-height:1.35;letter-spacing:-.02em;font-weight:400}
+.about .big em{font-size:1.08em}
+.about .txt p{color:var(--muted);margin-bottom:18px}
+.facts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);margin-top:30px}
+.facts div{padding:18px 0;border-bottom:1px solid var(--line)}
+.facts div:nth-child(odd){padding-right:18px}
+.facts b{display:block;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.facts span{font-size:1rem}
+
+/* ---------- process ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.step{padding:34px 26px 10px 0;position:relative}
+.step+.step{padding-left:26px;border-left:1px solid var(--line)}
+.step .n{font-family:"Instrument Serif",serif;font-style:italic;font-size:3rem;color:var(--ink);line-height:1}
+.step h3{font-weight:500;font-size:1.25rem;margin:22px 0 8px;letter-spacing:-.01em}
+.step p{color:var(--muted);font-size:.95rem}
+
+/* ---------- audit ---------- */
+.audit{position:relative;overflow:hidden;border-radius:32px;background:var(--accent);color:var(--on-accent);padding:64px;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center}
+.audit h2{color:var(--on-accent);max-width:none}
+.audit h2 em{color:var(--on-accent)}
+.audit p{margin-top:16px;max-width:520px;color:color-mix(in srgb,var(--on-accent) 75%,transparent)}
+.audit ul{list-style:none;display:grid;gap:12px;font-weight:500}
+.audit li{display:flex;gap:12px;align-items:center;border-bottom:1px solid color-mix(in srgb,var(--on-accent) 18%,transparent);padding-bottom:12px}
+.audit li::before{content:"✦"}
+.audit .btn{background:var(--on-accent);color:var(--accent);margin-top:20px}
+
+/* ---------- pricing ---------- */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 26px 24px;display:flex;flex-direction:column}
+.plan.pop{border-color:var(--ink);position:relative}
+.plan .tag{position:absolute;top:20px;right:20px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--on-accent);padding:5px 12px;border-radius:999px;font-weight:600}
+.plan h3{font-weight:500;font-size:1.2rem}
+.plan .desc{color:var(--muted);font-size:.9rem;margin-top:4px}
+.plan .amt{font-family:"Instrument Serif",serif;font-size:2.8rem;line-height:1;margin:18px 0 0}
+.plan .amt small{font-family:"Inter Tight";font-size:.9rem;color:var(--muted)}
+.plan ul{list-style:none;display:grid;gap:6px;font-size:.88rem}
+.plan li{display:flex;gap:10px;color:var(--muted)}
+.plan li::before{content:"→";color:var(--ink)}
+.plan .btn{width:100%}
+.pmeta{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:18px 0 4px}
+.pmeta div{padding:9px 0}
+.pmeta div+div{padding-left:12px;border-left:1px solid var(--line)}
+.pmeta b{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.pmeta span{font-size:.88rem}
+.pg{margin-top:14px}
+.pgs{flex:1;margin-bottom:20px}
+.pgh{display:flex;align-items:center;gap:8px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:7px}
+.pgh::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink)}
+.pgh.sh::before{background:var(--c-shopify)}.pgh.hs::before{background:var(--c-hubspot)}
+.pg ul{margin:0}
+
+.fine{color:var(--muted);font-size:.88rem;margin-top:22px}
+
+/* ---------- skills ---------- */
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:0 60px}
+.sk{padding:20px 0;border-bottom:1px solid var(--line)}
+.sk .row{display:flex;justify-content:space-between;margin-bottom:12px}
+.sk .row span:last-child{color:var(--muted);font-variant-numeric:tabular-nums}
+.sk .bar{height:3px;background:var(--line);border-radius:3px;overflow:hidden}
+.sk .bar i{display:block;height:100%;width:0;background:var(--ink);transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+
+/* ---------- testimonials ---------- */
+.quotes{columns:3 300px;column-gap:16px}
+.quote{break-inside:avoid;margin:0 0 16px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;transition:border-color .3s}
+.quote:hover{border-color:color-mix(in srgb,var(--ink) 45%,var(--line))}
+.qtag{display:inline-block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--muted);margin-bottom:18px}
+.quote q{display:block;font-family:"Instrument Serif",serif;font-size:1.32rem;line-height:1.38;quotes:"“" "”"}
+.quote .who{display:flex;align-items:center;gap:14px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+.quote .av{width:44px;height:44px;flex:none;border-radius:50%;background:var(--bg2);border:1px solid var(--line);display:grid;place-items:center;font-weight:600;font-size:.9rem;color:var(--ink)}
+.quote .who span{display:block;color:var(--muted);font-size:.86rem}
+/* ---------- faq ---------- */
+.faq-wrap{display:grid;grid-template-columns:1fr 1.5fr;gap:80px}
+details{border-bottom:1px solid var(--line)}
+details:first-child{border-top:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:24px 0;font-size:1.12rem;font-weight:500;display:flex;justify-content:space-between;gap:20px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:linear-gradient(var(--text),var(--text)) center/11px 1.5px no-repeat,linear-gradient(var(--text),var(--text)) center/1.5px 11px no-repeat;transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--muted);padding:0 50px 26px 0}
+
+/* ---------- contact ---------- */
+.contact{display:grid;grid-template-columns:1fr 1.15fr;gap:70px}
+.contact h2{font-size:clamp(2.6rem,6vw,5rem)}
+.contact .lead{color:var(--muted);margin:24px 0 36px;max-width:420px}
+.channels{display:grid;gap:0;border-top:1px solid var(--line)}
+.channels a{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);transition:padding .25s,color .25s}
+.channels a:hover{padding-left:10px;color:var(--ink)}
+.channels a span:first-child{color:var(--muted);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase}
+form{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:36px;display:grid;gap:16px;align-content:start}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:grid;gap:8px;font-size:.82rem;color:var(--muted)}
+input,select,textarea{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit;font-size:.98rem;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 4px color-mix(in srgb,var(--ink) 15%,transparent)}
+textarea{min-height:130px;resize:vertical}
+.chipset{display:flex;flex-wrap:wrap;gap:8px}
+.chipset input{position:absolute;opacity:0;width:1px;height:1px}
+.chipset label{display:inline-flex;cursor:pointer;height:38px;align-items:center;padding:0 16px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:.88rem;transition:.2s}
+.chipset input:checked+label{background:var(--text);color:var(--bg);border-color:var(--text)}
+.chipset input:focus-visible+label{outline:2px solid var(--ink);outline-offset:2px}
+.legend{font-size:.82rem;color:var(--muted);margin-bottom:8px}
+#msg{font-size:.9rem;min-height:1.3em}
+.hp{position:absolute;left:-9999px}
+
+/* ---------- footer ---------- */
+footer{padding:80px 0 36px;border-top:1px solid var(--line);overflow:hidden}
+.mega{font-weight:500;font-size:clamp(3.4rem,13vw,11rem);letter-spacing:-.06em;line-height:.9;white-space:nowrap}
+.mega em{letter-spacing:-.03em}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:.88rem;margin-top:40px}
+.foot nav{display:flex;gap:22px;flex-wrap:wrap}
+.foot a:hover{color:var(--text)}
+
+/* ---------- floating ---------- */
+.wa{position:fixed;right:22px;bottom:22px;z-index:60;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(37,211,102,.35);transition:transform .2s}
+.wa:hover{transform:scale(1.08)}
+.wa svg{width:28px;height:28px;fill:#fff}
+#toTop{position:fixed;right:28px;bottom:92px;z-index:60;background:var(--card);opacity:0;pointer-events:none;transition:opacity .3s}
+#toTop.show{opacity:1;pointer-events:auto}
+#prog{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:100}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex;animation:fade .25s}
+@keyframes fade{from{opacity:0}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:28px;width:100%;max-width:680px;max-height:88vh;overflow:auto;position:relative}
+.box .shot{border-radius:0;border:0;aspect-ratio:21/9}
+.box .in{padding:34px 36px 38px}
+.box h3{font-weight:500;font-size:1.9rem;letter-spacing:-.025em;line-height:1.15}
+.box h4{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin:24px 0 6px;font-weight:600}
+.box p{color:var(--muted)}
+.box .x{position:absolute;top:14px;right:14px;z-index:3;background:var(--card)}
+.box .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.split .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.split .w>span{display:inline-block;transform:translateY(105%);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.split.in .w>span{transform:none}
+
+/* ---------- responsive ---------- */
+@media(max-width:1020px){
+  .links{display:none;position:absolute;top:72px;left:16px;right:16px;flex-direction:column;gap:0;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:10px 22px;font-size:1.05rem}
+  .links.open{display:flex}
+  .links a{display:block;padding:13px 0}
+  .links li+li{border-top:1px solid var(--line)}
+  #menuBtn{display:grid}
+  .s1,.s2,.s3,.s4,.s5{grid-column:span 3}
+  .s1{grid-column:span 6}
+  .about,.faq-wrap,.contact,.audit{grid-template-columns:1fr;gap:48px}
+  .works{grid-template-columns:repeat(2,1fr)}
+  .plans{grid-template-columns:1fr;max-width:520px}
+  .steps{grid-template-columns:1fr 1fr}
+  .step:nth-child(3){padding-left:0;border-left:0}
+  .step:nth-child(n+3){border-top:1px solid var(--line);margin-top:20px}
+}
+@media(max-width:760px){
+  body{font-size:16px}
+  section{padding:84px 0}
+  .hero{padding:150px 0 64px}
+  .hero-foot{grid-template-columns:1fr;gap:28px}
+  .hero-foot .cta{justify-content:flex-start}
+  .ticker{grid-template-columns:1fr 1fr;margin-top:56px}
+  .ticker div:nth-child(3){padding-left:0;border-left:0}
+  .ticker div:nth-child(n+3){margin-top:12px}
+  .bento .tile{grid-column:span 6}
+  .works{grid-template-columns:1fr}
+  .work.wide{grid-column:span 1}
+  .work.wide .shot{aspect-ratio:16/10}
+  .skills{grid-template-columns:1fr}
+  .row2{grid-template-columns:1fr}
+  .audit{padding:40px 28px;border-radius:26px}
+  form{padding:26px 22px}
+  .meta{flex-direction:column;gap:6px}
+  .meta .res{text-align:left;white-space:normal}
+}
+@media(max-width:520px){
+  .nav-r .hire{display:none}
+  .wrap{padding:0 20px}
+  .steps{grid-template-columns:1fr}
+  .step,.step+.step{padding-left:0;border-left:0}
+  .step+.step{border-top:1px solid var(--line);margin-top:20px}
+  details p{padding-right:0}
+}
+@media(max-width:360px){.logo{font-size:.95rem}.nav .bar{padding-left:16px}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv,.split .w>span{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<header class="nav">
+  <div class="bar">
+    <a href="#home" class="logo"><i></i>Umer Nawaz</a>
+    <ul class="links" id="menu">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-r">
+      <button class="round" id="theme" aria-label="Toggle light and dark theme">
+        <svg viewBox="0 0 24 24" id="themeIco"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a href="#contact" class="btn solid sm hire">Let's talk</a>
+      <button class="round" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="orb"></div>
+  <div class="wrap">
+    <div class="status rv"><i></i>Available for new projects</div>
+    <h1 class="split">I build fast <span id="typed">Shopify stores</span><br>where beautiful design meets <em>real results.</em></h1>
+    <div class="hero-foot">
+      <p class="rv">Senior Shopify &amp; HubSpot developer crafting clean, fast and thoughtfully designed websites for businesses of every size, anywhere in the world, from first launch to full rebuild.</p>
+      <div class="cta rv">
+        <a href="#contact" class="btn solid">Start a project <span class="arr">→</span></a>
+        <a href="#work" class="btn line">View work</a>
+        <a href="#" class="btn line" data-cfg="calendly" target="_blank" rel="noopener" hidden>Book a call</a>
+      </div>
+    </div>
+    <div class="ticker">
+      <div class="rv"><b data-count="7" data-suffix="+">0</b><span>Years experience</span></div>
+      <div class="rv"><b data-count="80" data-suffix="+">0</b><span>Projects delivered</span></div>
+      <div class="rv"><b data-count="24" data-suffix="h">0</b><span>Reply time</span></div>
+      <div class="rv"><b data-count="100" data-suffix="%">0</b><span>Mobile-first</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="track"><span>Shopify Stores</span><span>HubSpot CMS</span><span>Landing Pages</span><span>Theme Development</span><span>Speed Optimization</span><span>Store Redesigns</span><span>CRM Workflows</span></div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="kicker rv">Services</div><h2 class="split">Everything your website needs, <em>done properly.</em></h2></div>
+      <p class="rv">From a single landing page to a complete store, I handle design, development and launch so you can focus on your business.</p>
+    </div>
+    <div class="bento">
+      <article class="tile s1 rv">
+        <div><span class="num">01</span><h3>Shopify Stores</h3><p>Custom themes, sections and full store builds. Products, checkout and payments set up to sell from day one, and easy for your team to manage.</p></div>
+        <ul><li>Custom themes</li><li>Liquid sections</li><li>Store setup</li><li>Migrations</li></ul>
+        <div class="big-ic" aria-hidden="true">S</div>
+      </article>
+      <article class="tile s2 accent rv">
+        <span class="num">PERFORMANCE</span>
+        <div><div class="speed">95<small>+</small></div><p>PageSpeed scores I aim for on every build. Fast sites rank higher and sell more.</p></div>
+      </article>
+      <article class="tile s3 rv">
+        <div><span class="num">02</span><h3>HubSpot Development</h3><p>Custom modules, CMS pages, forms and workflows that capture and nurture leads automatically.</p></div>
+      </article>
+      <article class="tile s4 rv">
+        <div><span class="num">03</span><h3>Landing Pages</h3><p>Focused pages for ads and launches, built to turn clicks into calls, sign-ups and orders.</p></div>
+      </article>
+      <article class="tile s5 rv">
+        <div><span class="num">04</span><h3>Redesigns</h3><p>Outdated or slow site? I rebuild it modern, mobile-friendly and optimized for SEO.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="padding-top:40px">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="kicker rv">Selected work</div><h2 class="split">Recent <em>projects.</em></h2></div>
+      <div class="filters rv" id="filters">
+        <button class="on" data-f="all">All</button>
+        <button data-f="shopify">Shopify</button>
+        <button data-f="hubspot">HubSpot</button>
+        <button data-f="landing">Landing pages</button>
+      </div>
+    </div>
+    <div class="works">
+      <!-- To use a real screenshot, put <img src="images/name.jpg" alt="..." loading="lazy"> inside .art -->
+      <a class="work rv" data-cat="shopify" data-id="p1" href="#" role="button">
+        <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g1"><span>Averr Aglow</span></div><div class="view">↗</div></div>
+        <div class="meta"><div><h3>Averr Aglow</h3><p>Shopify · Skincare · E-commerce</p></div><span class="res">Subscription-ready storefront</span></div>
+      </a>
+      <a class="work rv" data-cat="shopify" data-id="p2" href="#" role="button">
+        <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g2"><span>Gaspari Nutrition</span></div><div class="view">↗</div></div>
+        <div class="meta"><div><h3>Gaspari Nutrition</h3><p>Shopify · Sports nutrition · E-commerce</p></div><span class="res">Large catalog, easy browsing</span></div>
+      </a>
+      <a class="work rv" data-cat="landing" data-id="p3" href="#" role="button">
+        <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g3"><span>SkyMD</span></div><div class="view">↗</div></div>
+        <div class="meta"><div><h3>SkyMD</h3><p>Landing pages · Telehealth · Healthcare</p></div><span class="res">Conversion-focused pages</span></div>
+      </a>
+      <a class="work rv" data-cat="shopify" data-id="p4" href="#" role="button">
+        <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g4"><span>Powertec</span></div><div class="view">↗</div></div>
+        <div class="meta"><div><h3>Powertec</h3><p>Shopify · Fitness equipment · E-commerce</p></div><span class="res">Spec-rich product pages</span></div>
+      </a>
+      <a class="work rv" data-cat="shopify" data-id="p5" href="#" role="button">
+        <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g5"><span>Eclipse Holsters</span></div><div class="view">↗</div></div>
+        <div class="meta"><div><h3>Eclipse Holsters</h3><p>Shopify · Holsters & gear · E-commerce</p></div><span class="res">Fit-based product options</span></div>
+      </a>
+      <a class="work rv" data-cat="shopify" data-id="p6" href="#" role="button">
+        <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g6"><span>MuscleMeds</span></div><div class="view">↗</div></div>
+        <div class="meta"><div><h3>MuscleMeds</h3><p>Shopify · Supplements · E-commerce</p></div><span class="res">Launch-ready brand store</span></div>
+      </a>
+      <a class="work rv" data-cat="landing" data-id="p7" href="#" role="button">
+        <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g7"><span>LoopHQ</span></div><div class="view">↗</div></div>
+        <div class="meta"><div><h3>LoopHQ</h3><p>Landing pages · SaaS · B2B</p></div><span class="res">Clear product messaging</span></div>
+      </a>
+      <a class="work rv" data-cat="landing" data-id="p8" href="#" role="button">
+        <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g8"><span>Iplex</span></div><div class="view">↗</div></div>
+        <div class="meta"><div><h3>Iplex</h3><p>Landing pages · B2B · Lead generation</p></div><span class="res">Lead-focused pages</span></div>
+      </a>
+      <a class="work rv" data-cat="landing" data-id="p9" href="#" role="button">
+        <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g9"><span>Peeko Oysters</span></div><div class="view">↗</div></div>
+        <div class="meta"><div><h3>Peeko Oysters</h3><p>Landing pages · Seafood · Direct-to-consumer</p></div><span class="res">Farm-to-table storytelling</span></div>
+      </a>
+      <a class="work rv" data-cat="hubspot" data-id="p10" href="#" role="button">
+        <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g10"><span>Unicon</span></div><div class="view">↗</div></div>
+        <div class="meta"><div><h3>Unicon</h3><p>HubSpot CMS · EdTech · B2B</p></div><span class="res">Custom HubSpot modules</span></div>
+      </a>
+      <a class="work rv" data-cat="hubspot" data-id="p11" href="#" role="button">
+        <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g11"><span>RG Brenner</span></div><div class="view">↗</div></div>
+        <div class="meta"><div><h3>RG Brenner</h3><p>HubSpot · Tax & accounting · Lead generation</p></div><span class="res">Seasonal lead capture</span></div>
+      </a>
+      <a class="work rv" data-cat="hubspot" data-id="p12" href="#" role="button">
+        <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g12"><span>Chat42</span></div><div class="view">↗</div></div>
+        <div class="meta"><div><h3>Chat42</h3><p>HubSpot · Conversational AI · SaaS</p></div><span class="res">Product-led website</span></div>
+      </a>
+      <a class="work rv" data-cat="hubspot" data-id="p13" href="#" role="button">
+        <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g13"><span>Ontario East</span></div><div class="view">↗</div></div>
+        <div class="meta"><div><h3>Ontario East</h3><p>HubSpot CMS · Economic development · Lead nurturing</p></div><span class="res">Automated lead nurturing</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="background:var(--bg2)">
+  <div class="wrap about">
+    <div>
+      <div class="kicker rv">About</div>
+      <p class="big rv">Hi, I'm <span data-cfg="name">Umer Nawaz</span>, a senior Shopify &amp; HubSpot developer who cares about the details your customers <em>feel</em> but never notice.</p>
+    </div>
+    <div class="txt">
+      <p class="rv">With a strong frontend background, I've worked with growing brands and established companies to build websites that look professional and actually bring in customers.</p>
+      <p class="rv">I keep things simple: clear communication, honest timelines and work delivered when I say it will be. Add a line here about a project you're proud of or what you enjoy most.</p>
+      <div class="facts rv">
+        <div><b>Based in</b><span>Pakistan · remote</span></div>
+        <div><b>Clients</b><span>Across the world</span></div>
+        <div><b>Availability</b><span>Flexible time zones</span></div>
+        <div><b>Languages</b><span>English · Urdu</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="kicker rv">Process</div><h2 class="split">Simple, clear, <em>no surprises.</em></h2></div>
+      <p class="rv">You always know what's happening and what comes next.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv"><div class="n">01</div><h3>Discovery</h3><p>A free call about your business, goals and budget.</p></div>
+      <div class="step rv"><div class="n">02</div><h3>Plan &amp; design</h3><p>Clear scope, timeline and design direction for your approval.</p></div>
+      <div class="step rv"><div class="n">03</div><h3>Build &amp; review</h3><p>Development with your review at every milestone.</p></div>
+      <div class="step rv"><div class="n">04</div><h3>Launch &amp; support</h3><p>Go live, then free support for tweaks and questions.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="audit rv">
+      <div>
+        <h2>Get a free <em>website audit.</em></h2>
+        <p>Send me your website, or tell me you don't have one yet, and I'll send back 5 specific improvements to bring in more customers.</p>
+        <a href="#contact" class="btn" id="auditBtn">Get my free audit <span class="arr">→</span></a>
+      </div>
+      <ul><li>Speed &amp; mobile check</li><li>SEO basics</li><li>Conversion tips</li><li>Delivered within 48 hours</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="kicker rv">Pricing</div><h2 class="split">Packages that <em>scale with you.</em></h2></div>
+      <p class="rv">Every plan works for Shopify or HubSpot. Pick the scope you need, and I'll confirm a fixed price after a free call.</p>
+    </div>
+    <div class="plans">
+      <div class="plan rv">
+        <h3>Starter</h3><p class="desc">One landing page on Shopify or HubSpot.</p>
+        <div class="amt">$450<small> starting</small></div>
+        <div class="pmeta"><div><b>Delivery</b><span>3–5 days</span></div><div><b>Revisions</b><span>2</span></div><div><b>Support</b><span>14 days</span></div></div>
+        <div class="pgs"><div class="pg"><div class="pgh both">Shopify or HubSpot</div><ul><li>1 custom landing page</li><li>Responsive, mobile-first design</li><li>Forms connected to your CRM</li><li>Basic SEO &amp; speed setup</li></ul></div></div>
+        <a href="#contact" class="btn line sm" data-plan="Starter">Choose Starter</a>
+      </div>
+      <div class="plan pop rv">
+        <span class="tag">Popular</span><h3>Business</h3><p class="desc">A complete store or website.</p>
+        <div class="amt">$1,500<small> starting</small></div>
+        <div class="pmeta"><div><b>Delivery</b><span>2–3 weeks</span></div><div><b>Revisions</b><span>3</span></div><div><b>Support</b><span>30 days</span></div></div>
+        <div class="pgs"><div class="pg"><div class="pgh sh">Shopify</div><ul><li>Theme customization, up to 8 sections</li><li>Up to 50 products set up</li></ul></div><div class="pg"><div class="pgh hs">HubSpot</div><ul><li>CMS site up to 6 pages, custom modules</li><li>Forms, CRM &amp; basic workflows</li></ul></div></div>
+        <a href="#contact" class="btn solid sm" data-plan="Business">Choose Business</a>
+      </div>
+      <div class="plan rv">
+        <h3>Growth</h3><p class="desc">Custom features &amp; integrations.</p>
+        <div class="amt">$3,500<small>+</small></div>
+        <div class="pmeta"><div><b>Delivery</b><span>4–6 weeks</span></div><div><b>Revisions</b><span>5</span></div><div><b>Support</b><span>60 days</span></div></div>
+        <div class="pgs"><div class="pg"><div class="pgh sh">Shopify</div><ul><li>Custom theme from your Figma design</li><li>Advanced features &amp; app integrations</li></ul></div><div class="pg"><div class="pgh hs">HubSpot</div><ul><li>Custom objects &amp; workflow automation</li><li>CRM integrations incl. Shopify sync</li></ul></div></div>
+        <a href="#contact" class="btn line sm" data-plan="Growth">Choose Growth</a>
+      </div>
+    </div>
+    <p class="fine rv">Prices are starting points for a typical project. You get a fixed quote after a free call, so there are no surprise invoices. Monthly maintenance and hourly support are available too.</p>
+  </div>
+</section>
+
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="kicker rv">Expertise</div><h2 class="split">Tools I know <em>inside out.</em></h2></div>
+    </div>
+    <div class="skills">
+      <div class="sk rv" data-v="95"><div class="row"><span>Shopify / Liquid</span><span>95%</span></div><div class="bar"><i></i></div></div>
+      <div class="sk rv" data-v="95"><div class="row"><span>HubSpot CMS &amp; Modules</span><span>95%</span></div><div class="bar"><i></i></div></div>
+      <div class="sk rv" data-v="92"><div class="row"><span>HTML, CSS &amp; JavaScript</span><span>92%</span></div><div class="bar"><i></i></div></div>
+      <div class="sk rv" data-v="100"><div class="row"><span>Figma to code</span><span>100%</span></div><div class="bar"><i></i></div></div>
+      <div class="sk rv" data-v="88"><div class="row"><span>Page speed &amp; SEO</span><span>88%</span></div><div class="bar"><i></i></div></div>
+      <div class="sk rv" data-v="100"><div class="row"><span>Responsive / mobile-first</span><span>100%</span></div><div class="bar"><i></i></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="kicker rv">Kind words</div><h2 class="split">What clients <em>say.</em></h2></div>
+      <p class="rv">Feedback from Shopify and HubSpot clients in the USA, UK, Canada and Australia.</p>
+    </div>
+    <div class="quotes">
+      <figure class="quote rv"><span class="qtag">Shopify</span><q>Working with Umer was a great experience. He understood our requirements, improved our Shopify store's design, and made the overall shopping experience much smoother. His attention to detail, technical knowledge, and timely delivery made the entire process easy. Highly recommended!</q><figcaption class="who"><div class="av">OB</div><div>Olivia Bennett<span>USA</span></div></figcaption></figure>
+      <figure class="quote rv"><span class="qtag">Shopify</span><q>Umer handled our Shopify customization and optimization professionally. Excellent communication and quality work throughout.</q><figcaption class="who"><div class="av">JW</div><div>James Wilson<span>UK</span></div></figcaption></figure>
+      <figure class="quote rv"><span class="qtag">Shopify</span><q>Umer has been a reliable Shopify development partner for our business. He helped us with store customization, functionality improvements, and various technical enhancements. He understands project requirements quickly and always focuses on delivering quality work. We would definitely work with him again.</q><figcaption class="who"><div class="av">CM</div><div>Charlotte Mitchell<span>Australia</span></div></figcaption></figure>
+      <figure class="quote rv"><span class="qtag">HubSpot CRM</span><q>Umer streamlined our HubSpot CRM with custom properties and workflow automation. Professional work and great attention to detail.</q><figcaption class="who"><div class="av">EP</div><div>Ethan Parker<span>USA</span></div></figcaption></figure>
+      <figure class="quote rv"><span class="qtag">HubSpot CRM</span><q>We hired Umer to improve our HubSpot CRM setup and automate several operational processes. He handled custom object development, workflow automation, and third-party integrations with great attention to detail. His ability to understand complex requirements and turn them into practical solutions was impressive.</q><figcaption class="who"><div class="av">SA</div><div>Sophia Anderson<span>USA</span></div></figcaption></figure>
+      <figure class="quote rv"><span class="qtag">HubSpot CMS</span><q>Umer helped us with HubSpot CMS development, custom modules, website functionality, and CRM integrations. He has a strong understanding of HubSpot's development ecosystem and was able to handle both frontend customization and backend CRM requirements. Great communication and reliable delivery.</q><figcaption class="who"><div class="av">DF</div><div>Daniel Foster<span>Canada</span></div></figcaption></figure>
+      <figure class="quote rv"><span class="qtag">Landing pages</span><q>Umer did a fantastic job designing and developing our landing pages in HubSpot. He understood our design requirements, created responsive layouts, and ensured everything worked smoothly across desktop and mobile devices. The pages were well-structured, visually appealing, and easy for our marketing team to manage.</q><figcaption class="who"><div class="av">ER</div><div>Emily Richardson<span>USA</span></div></figcaption></figure>
+      <figure class="quote rv"><span class="qtag">Landing pages</span><q>Professional HubSpot landing pages with reusable modules and excellent mobile optimization. Highly recommended!</q><figcaption class="who"><div class="av">AB</div><div>Alexander Brooks<span>UK</span></div></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq-wrap">
+    <div><div class="kicker rv">FAQ</div><h2 class="split">Questions, <em>answered.</em></h2></div>
+    <div class="rv">
+      <details><summary>How long does a website take?</summary><p>A landing page usually takes 3 to 5 days, a full website or store 2 to 4 weeks, depending on content and feedback speed.</p></details>
+      <details><summary>How do we work across time zones?</summary><p>I reply within 24 hours and adjust my schedule to overlap with your business hours for calls. Most updates happen over email or chat so nothing gets stuck.</p></details>
+      <details><summary>Do I need to provide content and photos?</summary><p>If you have them, great. If not, I'll guide you on what's needed and help with placeholder content to get started.</p></details>
+      <details><summary>Will I own my website?</summary><p>Yes. Once the project is paid and delivered, the site, code and accounts are fully yours.</p></details>
+      <details><summary>What if I need changes after launch?</summary><p>Every package includes free support after launch. After that, I offer simple hourly or monthly maintenance options.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:40px">
+  <div class="wrap contact">
+    <div>
+      <div class="kicker rv">Contact</div>
+      <h2 class="split">Let's build something <em>great.</em></h2>
+      <p class="lead rv">Tell me about your project and I'll reply within 24 hours with ideas and a free quote.</p>
+      <div class="channels rv">
+        <a href="#" data-cfg="email"><span>Email</span><span class="val">dev.umernawaz0403@gmail.com ↗</span></a>
+        <a href="#" data-cfg="wa" target="_blank" rel="noopener"><span>WhatsApp</span><span>+92 332 5996236 ↗</span></a>
+        <a href="#" data-cfg="linkedin" target="_blank" rel="noopener"><span>LinkedIn</span><span>Connect ↗</span></a>
+        <a href="#" data-cfg="calendly" target="_blank" rel="noopener" hidden><span>Call</span><span>Book a free call ↗</span></a>
+      </div>
+    </div>
+    <!-- Form submissions go to Formspree (formspree.io/f/xqpqebjv) and are emailed to you. -->
+    <form id="form" class="rv" action="https://formspree.io/f/xqpqebjv" method="POST">
+      <div>
+        <div class="legend">I'm interested in</div>
+        <div class="chipset" id="svc">
+          <input type="radio" name="service" id="c1" value="Shopify store" checked><label for="c1">Shopify store</label>
+          <input type="radio" name="service" id="c2" value="HubSpot development"><label for="c2">HubSpot</label>
+          <input type="radio" name="service" id="c3" value="Landing page"><label for="c3">Landing page</label>
+          <input type="radio" name="service" id="c4" value="Website redesign"><label for="c4">Redesign</label>
+          <input type="radio" name="service" id="c5" value="Free website audit"><label for="c5">Free audit</label>
+        </div>
+      </div>
+      <div class="row2">
+        <label>Your name<input name="name" required autocomplete="name"></label>
+        <label>Email<input type="email" name="email" required autocomplete="email"></label>
+      </div>
+      <label>Budget
+        <select name="budget"><option>Under $500</option><option>$500 – $1,500</option><option>$1,500 – $5,000</option><option>$5,000+</option></select>
+      </label>
+      <label>Project details<textarea name="message" required placeholder="Tell me about your business and what you need..."></textarea></label>
+      <input type="hidden" name="_subject" value="New project enquiry from your portfolio">
+      <input class="hp" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn solid" type="submit">Send message <span class="arr">→</span></button>
+      <div id="msg" role="status"></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="mega" aria-hidden="true">Umer <em>Nawaz</em></div>
+    <div class="foot">
+      <span>© <span id="y"></span> <span data-cfg="name">Umer Nawaz</span> · Working with clients worldwide</span>
+      <nav><a href="#services">Services</a><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></nav>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="#" data-cfg="wa" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.2 2 11.4c0 2.2.8 4.3 2.2 5.9L3 22l5-1.7c1.2.5 2.6.8 4 .8 5.5 0 10-4.2 10-9.4S17.5 2 12 2z"/></svg>
+</a>
+<button class="round" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="box" role="dialog" aria-modal="true" aria-labelledby="mt">
+    <button class="round x" id="close" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="shot"><div class="art" id="mart"><span id="mname"></span></div></div>
+    <div class="in">
+      <h3 id="mt"></h3>
+      <div id="mb"></div>
+      <div class="acts" id="macts"><a href="#contact" class="btn solid" id="mcta">Start a similar project <span class="arr">→</span></a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ====== EDIT YOUR DETAILS HERE (one place) ====== */
+  var CONFIG = {
+    name: 'Umer Nawaz',
+    email: 'dev.umernawaz0403@gmail.com',
+    whatsapp: '923325996236',            // country code + number, no + or spaces
+    linkedin: 'https://www.linkedin.com/in/umer-nawaz-73862a206/',
+    calendly: ''                          // e.g. https://calendly.com/yourname/intro (empty = hidden)
+  };
+  /* ================================================= */
+
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // apply CONFIG
+  $$('[data-cfg]').forEach(function(a){
+    var k=a.getAttribute('data-cfg');
+    if(k==='name'){ a.textContent=CONFIG.name; return; }
+    if(k==='email'){ a.href='mailto:'+CONFIG.email; var v=$('.val',a); if(v) v.textContent=CONFIG.email+' ↗'; return; }
+    if(k==='wa'){ a.href='https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent('Hi Umer, I found your portfolio and have a project in mind.'); return; }
+    if(CONFIG[k]){ a.href=CONFIG[k]; a.hidden=false; }
+  });
+  $('#y').textContent=new Date().getFullYear();
+
+  // theme
+  var root=document.documentElement, ico=$('#themeIco');
+  var MOON='<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+  var SUN='<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+  function setTheme(t){ root.setAttribute('data-theme',t); ico.innerHTML = t==='dark'?SUN:MOON; }
+  var saved=null; try{ saved=localStorage.getItem('theme'); }catch(e){}
+  setTheme(saved||'dark');
+  $('#theme').onclick=function(){ var t=root.getAttribute('data-theme')==='dark'?'light':'dark'; setTheme(t); try{localStorage.setItem('theme',t)}catch(e){} };
+
+  // mobile menu
+  var menu=$('#menu'), mb=$('#menuBtn');
+  mb.onclick=function(){ var o=menu.classList.toggle('open'); mb.setAttribute('aria-expanded',o); };
+  $$('#menu a').forEach(function(a){ a.addEventListener('click',function(){ menu.classList.remove('open'); mb.setAttribute('aria-expanded',false); }); });
+
+  // marquee loop
+  var tr=$('#track'); tr.innerHTML+=tr.innerHTML;
+
+  // split headings into words for reveal (keeps inner elements intact)
+  $$('.split').forEach(function(h){
+    var nodes=Array.prototype.slice.call(h.childNodes); h.innerHTML='';
+    nodes.forEach(function(n){
+      if(n.nodeType===3){
+        n.textContent.split(/(\s+)/).forEach(function(part){
+          if(!part) return;
+          if(/^\s+$/.test(part)){ h.appendChild(document.createTextNode(' ')); return; }
+          var w=document.createElement('span'); w.className='w'; var i=document.createElement('span'); i.textContent=part; w.appendChild(i); h.appendChild(w);
+        });
+      } else if(n.nodeName==='BR'){ h.appendChild(n); }
+      else { var w=document.createElement('span'); w.className='w'; var i=document.createElement('span'); i.appendChild(n); w.appendChild(i); h.appendChild(w); }
+    });
+    $$('.w>span',h).forEach(function(s,i){ s.style.transitionDelay=(i*45)+'ms'; });
+  });
+
+  // typed headline
+  var words=['Shopify stores','HubSpot sites','landing pages'], colors=['--c-shopify','--c-hubspot','--c-landing'], wi=0, ci=words[0].length, del=true, el=$('#typed');
+  function type(){
+    var w=words[wi]; el.textContent=w.slice(0,ci); el.style.setProperty('--tc','var('+colors[wi]+')');
+    if(!del && ci===w.length){ del=true; return setTimeout(type,1800); }
+    if(del && ci===0){ del=false; wi=(wi+1)%words.length; }
+    ci+=del?-1:1; setTimeout(type,del?35:80);
+  }
+  if(!reduce) setTimeout(type,2600);
+
+  // scroll effects
+  var prog=$('#prog'), topB=$('#toTop'), links=$$('#menu a'), secs=links.map(function(a){return $(a.getAttribute('href'))});
+  function onScroll(){
+    var d=document.documentElement, max=d.scrollHeight-d.clientHeight;
+    prog.style.width=(max>0?d.scrollTop/max*100:0)+'%';
+    topB.classList.toggle('show',d.scrollTop>700);
+    var cur=-1; secs.forEach(function(s,i){ if(s&&s.getBoundingClientRect().top<160) cur=i; });
+    links.forEach(function(a,i){ a.classList.toggle('active',i===cur); });
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  topB.onclick=function(){ scrollTo({top:0,behavior:'smooth'}); };
+
+  // reveal, counters, skill bars
+  function count(n){
+    var t=+n.dataset.count, s=n.dataset.suffix||'', st=null;
+    function f(ts){ st=st||ts; var p=Math.min((ts-st)/1600,1); n.textContent=Math.round(t*(1-Math.pow(1-p,3)))+s; if(p<1) requestAnimationFrame(f); }
+    requestAnimationFrame(f);
+  }
+  function show(n){
+    n.classList.add('in');
+    if(n.dataset.v){ $('i',n).style.width=n.dataset.v+'%'; }
+    var c=n.querySelector('[data-count]'); if(c) count(c);
+  }
+  var targets=$$('.rv,.split');
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ show(e.target); io.unobserve(e.target); } }); },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    targets.forEach(function(n){ io.observe(n); });
+  } else { targets.forEach(show); $$('[data-count]').forEach(function(n){ n.textContent=n.dataset.count+(n.dataset.suffix||''); }); }
+
+  // spotlight on tiles
+  $$('.tile').forEach(function(t){
+    t.addEventListener('pointermove',function(e){ var r=t.getBoundingClientRect(); t.style.setProperty('--mx',(e.clientX-r.left)+'px'); t.style.setProperty('--my',(e.clientY-r.top)+'px'); });
+  });
+
+  // filters
+  $$('#filters button').forEach(function(b){
+    b.onclick=function(){
+      $$('#filters button').forEach(function(x){x.classList.remove('on')}); b.classList.add('on');
+      $$('.work').forEach(function(w){ w.classList.toggle('hide', b.dataset.f!=='all' && w.dataset.cat!==b.dataset.f); });
+    };
+  });
+
+  // project modal — edit with your real case studies (u = live URL, optional)
+  var data={
+    p1:{t:'Averr Aglow',g:'g1',n:'Averr Aglow',
+        c:'A fast-growing skincare brand needed a storefront that explained its routines and product kits clearly and made repeat orders and subscriptions effortless.',
+        s:'Built custom Shopify sections for product kits and bundles, subscription-friendly product pages, ingredient and how-to-use blocks, and a mobile-first layout the team can update from the theme editor.',
+        r:'A cleaner, more premium shopping experience that makes kits and subscriptions easy to buy on any device, and easier for the team to manage day to day.',u:'https://averraglow.com'},
+    p2:{t:'Gaspari Nutrition',g:'g2',n:'Gaspari Nutrition',
+        c:'A well-known sports nutrition brand with a large catalog of products, flavors and sizes needed customers to find the right product quickly.',
+        s:'Developed Shopify product templates with clear flavor and size selectors, supplement facts sections, improved collection filtering and performance optimizations across the store.',
+        r:'Faster, simpler browsing across a large catalog, with product pages that give customers the information they need to buy with confidence.',u:'https://gasparinutrition.com'},
+    p3:{t:'SkyMD',g:'g3',n:'SkyMD',
+        c:'A national telehealth platform needed landing pages that build trust quickly and guide patients from search to starting an online visit.',
+        s:'Designed and built conversion-focused landing pages for services and conditions, with clear calls to action, trust signals, fast load times and an SEO-friendly structure.',
+        r:'Clear, trustworthy pages that make it simple for patients to understand the service and start a visit in a few clicks.',u:'https://www.skymd.com'},
+    p4:{t:'Powertec',g:'g4',n:'Powertec',
+        c:'A fitness equipment brand selling high-value products needed pages that answer buyer questions before purchase.',
+        s:'Built Shopify product pages with detailed specifications, rich imagery, feature highlights, and clear shipping and support information.',
+        r:'Product pages that present every detail buyers look for, making big purchase decisions easier and reducing back-and-forth questions.',u:'https://powertec.com'},
+    p5:{t:'Eclipse Holsters',g:'g5',n:'Eclipse Holsters',
+        c:'Customers needed to find a holster that fits their exact model and preferences without confusion.',
+        s:'Developed custom product option selectors, model-based collection structure and clear product information on Shopify.',
+        r:'A smoother path from choosing a model to checkout, with fewer wrong orders and less confusion for customers.',u:'https://eclipseholsters.com'},
+    p6:{t:'MuscleMeds',g:'g6',n:'MuscleMeds',
+        c:'A supplement brand needed a bold storefront that could showcase its range and support new product launches.',
+        s:'Built a branded Shopify storefront with reusable landing sections for launches, bundles and featured products, optimized for mobile shoppers.',
+        r:'A strong, consistent brand experience and a flexible setup that lets the team launch and promote products quickly.',u:'https://musclemedsrx.com'},
+    p7:{t:'LoopHQ',g:'g7',n:'LoopHQ',
+        c:'A software company needed landing pages that explain its product quickly and turn visitors into sign-ups and demo requests.',
+        s:'Built focused landing pages with clear value propositions, feature highlights, social proof sections and strong calls to action, fully responsive and fast to load.',
+        r:'Sharper product messaging and a cleaner path from first visit to sign-up or demo request.',u:'https://loophq.com'},
+    p8:{t:'Iplex',g:'g8',n:'Iplex',
+        c:'A B2B business needed pages that present its services clearly and capture qualified enquiries from decision-makers.',
+        s:'Designed and built lead-focused landing pages with service overviews, trust signals, structured content and simple enquiry forms.',
+        r:'A more professional first impression and a simpler way for prospects to get in touch.',u:'https://iplex.co'},
+    p9:{t:'Peeko Oysters',g:'g9',n:'Peeko Oysters',
+        c:'A Long Island oyster farm selling direct to customers needed pages that share its farm-to-table story and drive online orders and experiences.',
+        s:'Built story-driven landing pages showcasing the farm, oyster orders, shipping and on-site experiences like tours, with mobile-first layouts and clear calls to action.',
+        r:'A warm, memorable brand story that makes it easy for customers to order oysters or book an experience.',u:'https://www.peekooysters.com'},
+    p10:{t:'Unicon',g:'g10',n:'Unicon',
+        c:'An education technology consultancy needed a website its marketing team could update easily while capturing and routing leads from colleges and universities.',
+        s:'Built a custom HubSpot CMS theme with reusable drag-and-drop modules, smart forms connected to the CRM and lead-nurturing workflows.',
+        r:'A flexible site the marketing team manages on its own, with leads flowing straight into the CRM and followed up automatically.',u:'https://www.unicon.net'},
+    p11:{t:'RG Brenner',g:'g11',n:'RG Brenner',
+        c:'A long-established tax and accounting firm needed to handle a surge of client enquiries during tax season and book appointments smoothly.',
+        s:'Developed HubSpot landing pages and forms for services and offices, appointment booking, and automated follow-up emails and reminders.',
+        r:'A smoother path from enquiry to booked appointment, with less manual follow-up for the team during the busiest months.',u:'https://www.rgbrenner.com'},
+    p12:{t:'Chat42',g:'g12',n:'Chat42',
+        c:'A conversational AI company building chatbots for events and organizations needed a website that explains its solutions clearly and turns visitors into demo requests.',
+        s:'Built HubSpot pages and custom modules for solutions, use cases and demos, with CRM-connected forms and email workflows for new enquiries.',
+        r:'Clear product messaging and a connected funnel where every sign-up lands in the CRM with the right follow-up.',u:'https://www.42chat.com'},
+    p13:{t:'Ontario East',g:'g13',n:'Ontario East',
+        c:'A regional economic development organization needed a website that presents the region to investors and businesses looking to relocate or expand, with properties, sector data and member information easy to find.',
+        s:'Built custom HubSpot templates and modules for regional profiles, available properties, key sectors, member directory, news and events, plus CRM-connected enquiry forms and nurturing workflows.',
+        r:'A clear, easy-to-manage site that showcases the region and turns investor and business interest into tracked, followed-up leads.',u:'https://ontarioeast.ca'}
+  };
+
+  // live website screenshots on cards (falls back to the name if a screenshot can't load)
+  // To use your own image instead, set data[id].img = 'images/name.jpg'
+  function snapUrl(d){ return d.img || ('https://s0.wp.com/mshots/v1/'+encodeURIComponent(d.u)+'?w=1280&h=800'); }
+  function addSnap(art,d,alt){
+    var old=art.querySelector('.snap'); if(old) old.remove(); art.classList.remove('has-snap');
+    if(!(d.u||d.img)) return;
+    var im=new Image(); im.className='snap'; im.alt=alt+' website screenshot'; im.loading='lazy'; im.decoding='async';
+    im.onload=function(){ if(im.naturalWidth>400) art.classList.add('has-snap'); else retry(); };
+    im.onerror=function(){ art.classList.remove('has-snap'); };
+    var tries=0; function retry(){ if(d.img||tries++>3) return; setTimeout(function(){ im.src=snapUrl(d)+'&r='+tries; },4000); }
+    im.src=snapUrl(d); art.appendChild(im);
+  }
+  $$('.work').forEach(function(w){ var d=data[w.dataset.id]; if(d) addSnap($('.art',w),d,d.n); });
+  var modal=$('#modal'), last=null;
+  function openM(id){
+    var d=data[id]; if(!d) return; last=document.activeElement;
+    $('#mart').className='art '+d.g; $('#mname').textContent=d.n; addSnap($('#mart'),d,d.n); $('#mt').textContent=d.t;
+    $('#mb').innerHTML='<h4>The challenge</h4><p></p><h4>What I did</h4><p></p><h4>The result</h4><p></p>';
+    var ps=$$('#mb p'); ps[0].textContent=d.c; ps[1].textContent=d.s; ps[2].textContent=d.r;
+    var old=$('#mlive'); if(old) old.remove();
+    if(d.u){ var l=document.createElement('a'); l.id='mlive'; l.href=d.u; l.target='_blank'; l.rel='noopener'; l.className='btn line'; l.textContent='Visit live site ↗'; $('#macts').appendChild(l); }
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; $('#close').focus();
+  }
+  function closeM(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; if(last) last.focus(); }
+  $$('.work').forEach(function(w){ w.addEventListener('click',function(e){ e.preventDefault(); openM(w.dataset.id); }); });
+
+  $('#close').onclick=closeM; $('#mcta').addEventListener('click',closeM);
+  modal.onclick=function(e){ if(e.target===modal) closeM(); };
+  addEventListener('keydown',function(e){ if(e.key==='Escape'&&modal.classList.contains('open')) closeM(); });
+
+  // audit + pricing prefill
+  function pick(v){ $$('#svc input').forEach(function(i){ i.checked=(i.value===v); }); }
+  $('#auditBtn').addEventListener('click',function(){ pick('Free website audit'); var m=$('textarea[name=message]'); if(!m.value) m.value='Hi Umer, please send me a free audit. My website (or "no website yet"): '; });
+  $$('[data-plan]').forEach(function(b){ b.addEventListener('click',function(){ var m=$('textarea[name=message]'); if(!m.value) m.value='Hi Umer, I\'m interested in the '+b.dataset.plan+' package. '; }); });
+
+  // form: Formspree if configured, otherwise mailto
+  var form=$('#form'), msg=$('#msg');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var fd=new FormData(form); if(fd.get('_gotcha')) return;
+    if(form.action.indexOf('YOUR_FORM_ID')===-1){
+      msg.style.color='var(--muted)'; msg.textContent='Sending...';
+      fetch(form.action,{method:'POST',body:fd,headers:{Accept:'application/json'}}).then(function(r){
+        if(!r.ok) throw 0; form.reset(); msg.style.color='var(--ink)'; msg.textContent='Thank you! I\'ll reply within 24 hours.';
+      }).catch(function(){ msg.style.color='#ef4444'; msg.textContent='Something went wrong. Please email '+CONFIG.email+' directly.'; });
+    } else {
+      var body='Name: '+fd.get('name')+'\nEmail: '+fd.get('email')+'\nService: '+fd.get('service')+'\nBudget: '+fd.get('budget')+'\n\n'+fd.get('message');
+      location.href='mailto:'+CONFIG.email+'?subject='+encodeURIComponent('Project enquiry from '+fd.get('name'))+'&body='+encodeURIComponent(body);
+      msg.style.color='var(--muted)'; msg.textContent='Opening your email app...';
+    }
+  });
+})();
+</script>
+</body>
+</html>
