@@ -232,17 +232,24 @@ h2{font-weight:500;font-size:clamp(2.1rem,4.6vw,3.6rem);line-height:1.05;letter-
 /* ---------- testimonials ---------- */
 .qslider{overflow:hidden;margin:0 -8px;padding:4px 0}
 .qtrack{display:flex;transition:transform .7s cubic-bezier(.2,.8,.2,1);touch-action:pan-y}
-.qtrack .quote{flex:0 0 calc(100% / var(--per,3));padding-inline:8px;background:none;border:0;margin:0;display:flex}
-.qtrack .quote>.qin{flex:1;display:flex;flex-direction:column}
-.qin q{flex:1}
+.qtrack{align-items:flex-start}
+.qtrack .quote{flex:0 0 calc(100% / var(--per,3));padding-inline:8px;background:none;border:0;margin:0}
 .qnav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:28px}
 .qdots{display:flex;gap:8px}
 .qdots button{width:8px;height:8px;border-radius:999px;background:var(--line);transition:width .3s,background .3s}
 .qdots button.on{width:26px;background:var(--ink)}
+.wnav{display:none}
+@media(max-width:760px){
+  .wview{overflow:hidden;margin:0 -8px}
+  .wview .works{display:flex;gap:0;transition:transform .7s cubic-bezier(.2,.8,.2,1);touch-action:pan-y}
+  .wview .work{flex:0 0 100%;padding-inline:8px}
+  .wview .work.hide{display:none}
+  .wnav{display:flex}
+}
 .qin{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;transition:border-color .3s}
 .qin:hover{border-color:color-mix(in srgb,var(--ink) 45%,var(--line))}
 .qtag{display:inline-block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:4px 11px;color:var(--muted);margin-bottom:18px}
-.quote q{display:block;font-family:"Instrument Serif",serif;font-size:1.32rem;line-height:1.38;quotes:"“" "”"}
+.quote q{display:block;font-family:"Instrument Serif",serif;font-style:italic;font-size:1.32rem;line-height:1.38;quotes:"“" "”"}
 .quote .who{display:flex;align-items:center;gap:14px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
 .quote .av{width:44px;height:44px;flex:none;border-radius:50%;background:var(--bg2);border:1px solid var(--line);display:grid;place-items:center;font-weight:600;font-size:.9rem;color:var(--ink)}
 .quote .who span{display:block;color:var(--muted);font-size:.86rem}
@@ -463,6 +470,7 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);overflow:hidden}
         <button data-f="landing">Landing pages</button>
       </div>
     </div>
+    <div class="wview" id="wview">
     <div class="works">
       <!-- To use a real screenshot, put <img src="images/name.jpg" alt="..." loading="lazy"> inside .art -->
       <a class="work rv" data-cat="shopify" data-id="p1" href="#" role="button">
@@ -517,6 +525,13 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);overflow:hidden}
         <div class="shot"><div class="chrome"><i></i><i></i><i></i></div><div class="art g13"><span>Ontario East</span></div><div class="view">↗</div></div>
         <div class="meta"><div><h3>Ontario East</h3><p>HubSpot CMS · Economic development · Lead nurturing</p></div><span class="res">Automated lead nurturing</span></div>
       </a>
+    </div>
+    </div>
+    <div class="qnav wnav" id="wnav">
+      <button class="round" id="wprev" aria-label="Previous project"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <div class="qdots" id="wdots"></div>
+      <button class="round" id="wnext" aria-label="Next project"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
     </div>
   </div>
 </section>
@@ -830,42 +845,77 @@ footer{padding:80px 0 36px;border-top:1px solid var(--line);overflow:hidden}
   });
 
 
-  // reviews slider: auto-advances every 3.5s, pauses on hover/focus, swipe on touch
-  (function(){
-    var track=$('#qtrack'); if(!track) return;
-    var slider=$('#qslider'), items=$$('.quote',track), dotsWrap=$('#qdots'), i=0, timer=null, per=3;
-    function perView(){ var w=innerWidth; return w<=760?1:(w<=1020?2:3); }
-    function pages(){ return Math.max(1,items.length-per+1); }
-    function buildDots(){
-      dotsWrap.innerHTML='';
-      for(var k=0;k<pages();k++){ var d=document.createElement('button'); d.setAttribute('aria-label','Go to review '+(k+1)); (function(k){ d.onclick=function(){ go(k); restart(); }; })(k); dotsWrap.appendChild(d); }
+  // Infinite slider: moves forward forever (last -> first without rewinding)
+  function Loop(o){
+    var track=o.track, view=o.view, timer=null, busy=false, i=0, on=false, orig=[].slice.call(track.children);
+    function vis(){ return [].slice.call(track.children).filter(function(e){ return !e.classList.contains('hide'); }); }
+    function per(){ return o.per(); }
+    function n(){ return vis().length; }
+    function canMove(){ return on && n()>per(); }
+    function step(){ return 100/per(); }
+    function setT(x,anim){ track.style.transition=anim?'':'none'; track.style.transform='translateX('+x+'%)'; if(!anim) void track.offsetWidth; }
+    function rotForward(){ var f; do { f=track.firstElementChild; track.appendChild(f); } while(f.classList.contains('hide')); }
+    function rotBack(){ var l; do { l=track.lastElementChild; track.insertBefore(l,track.firstElementChild); } while(l.classList.contains('hide')); }
+    function dots(){
+      if(!o.dots) return; var c=n();
+      if(o.dots.children.length!==c){ o.dots.innerHTML=''; for(var k=0;k<c;k++){ var d=document.createElement('button'); d.setAttribute('aria-label','Go to item '+(k+1)); (function(k){ d.onclick=function(){ goTo(k); restart(); }; })(k); o.dots.appendChild(d); } }
+      [].forEach.call(o.dots.children,function(d,j){ d.classList.toggle('on',j===i); });
     }
-    function go(k){
-      var n=pages(); i=(k+n)%n;
-      track.style.transform='translateX('+(-i*100/per)+'%)';
-      $$('button',dotsWrap).forEach(function(d,j){ d.classList.toggle('on',j===i); });
+    function next(){
+      if(!canMove()||busy) return; busy=true;
+      setT(-step(),true);
+      setTimeout(function(){ rotForward(); setT(0,false); track.style.transition=''; i=(i+1)%n(); dots(); busy=false; },720);
     }
-    function layout(){ var p=perView(); if(p!==per||!dotsWrap.children.length){ per=p; slider.style.setProperty('--per',per); track.style.setProperty('--per',per); buildDots(); } go(Math.min(i,pages()-1)); }
-    function start(){ if(reduce) return; stop(); timer=setInterval(function(){ go(i+1); },3500); }
+    function prev(){
+      if(!canMove()||busy) return; busy=true;
+      rotBack(); setT(-step(),false); track.style.transition=''; setT(0,true);
+      setTimeout(function(){ i=(i-1+n())%n(); dots(); busy=false; },720);
+    }
+    function goTo(k){ if(!canMove()||busy) return; var c=n(), d=(k-i+c)%c; while(d--) rotForward(); i=k; setT(0,false); track.style.transition=''; dots(); }
+    function reset(){ orig.forEach(function(e){ track.appendChild(e); }); i=0; setT(0,false); track.style.transition=''; dots(); }
+    function start(){ stop(); if(reduce||!canMove()) return; timer=setInterval(function(){ if(!document.hidden && !(o.paused&&o.paused())) next(); },o.interval||3500); }
     function stop(){ if(timer){ clearInterval(timer); timer=null; } }
     function restart(){ stop(); start(); }
-    $('#qprev').onclick=function(){ go(i-1); restart(); };
-    $('#qnext').onclick=function(){ go(i+1); restart(); };
-    slider.addEventListener('mouseenter',stop); slider.addEventListener('mouseleave',start);
-    slider.addEventListener('focusin',stop); slider.addEventListener('focusout',start);
-    var sx=null;
-    track.addEventListener('pointerdown',function(e){ sx=e.clientX; });
-    track.addEventListener('pointerup',function(e){ if(sx===null) return; var dx=e.clientX-sx; sx=null; if(Math.abs(dx)>40){ go(i+(dx<0?1:-1)); restart(); } });
-    document.addEventListener('visibilitychange',function(){ document.hidden?stop():start(); });
-    addEventListener('resize',layout);
-    layout(); start();
-  })();
+    function update(){
+      var want=o.enabled?o.enabled():true;
+      if(o.setPer) o.setPer(per());
+      if(want!==on){ on=want; reset(); }
+      if(on){ dots(); start(); } else stop();
+    }
+    if(o.prevBtn) o.prevBtn.onclick=function(){ prev(); restart(); };
+    if(o.nextBtn) o.nextBtn.onclick=function(){ next(); restart(); };
+    view.addEventListener('mouseenter',stop); view.addEventListener('mouseleave',function(){ if(on) start(); });
+    var sx=null, sy=null, dragged=false;
+    view.addEventListener('pointerdown',function(e){ sx=e.clientX; sy=e.clientY; dragged=false; stop(); });
+    view.addEventListener('pointerup',function(e){
+      if(sx===null) return; var dx=e.clientX-sx, dy=e.clientY-sy; sx=null;
+      if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)){ dragged=true; dx<0?next():prev(); }
+      if(on) start();
+    });
+    view.addEventListener('click',function(e){ if(dragged){ e.preventDefault(); e.stopPropagation(); dragged=false; } },true);
+    var rt; addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(update,150); });
+    return {update:update, reset:function(){ reset(); update(); }};
+  }
+
+  // reviews: 3 / 2 / 1 per view, every 3.5s
+  var qv=$('#qslider');
+  var qLoop = qv ? Loop({ view:qv, track:$('#qtrack'), dots:$('#qdots'), prevBtn:$('#qprev'), nextBtn:$('#qnext'), interval:3500,
+    per:function(){ var w=innerWidth; return w<=760?1:(w<=1020?2:3); },
+    setPer:function(p){ $('#qtrack').style.setProperty('--per',p); } }) : null;
+  if(qLoop) qLoop.update();
+
+  // projects: slider on mobile only, every 3.5s
+  var wLoop = Loop({ view:$('#wview'), track:$('.works'), dots:$('#wdots'), prevBtn:$('#wprev'), nextBtn:$('#wnext'), interval:3500,
+    per:function(){ return 1; }, enabled:function(){ return innerWidth<=760; },
+    paused:function(){ return $('#modal').classList.contains('open'); } });
+  wLoop.update();
 
   // filters
   $$('#filters button').forEach(function(b){
     b.onclick=function(){
       $$('#filters button').forEach(function(x){x.classList.remove('on')}); b.classList.add('on');
       $$('.work').forEach(function(w){ w.classList.toggle('hide', b.dataset.f!=='all' && w.dataset.cat!==b.dataset.f); });
+      wLoop.reset();
     };
   });
 
